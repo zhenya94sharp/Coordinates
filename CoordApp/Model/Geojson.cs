@@ -11,9 +11,6 @@ namespace CoordApp.Model
         [JsonProperty("type")]
         public string type { get; set; }
         [JsonProperty("coordinates")]
-        public List<object> coordinates
-        {
-            get; set;
-        }
+        public List<object> coordinates { get; set; }
     }
 }

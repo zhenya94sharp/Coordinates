@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,12 +14,15 @@ namespace CoordApp.Controllers
 {
     class ControllerFormMain
     {
-        private static List<JsonData> listDates = new List<JsonData>();
-        public async void Blabla(FormMain form)
+        private static List<JsonData> listData = new List<JsonData>();
+        public async void ConvertJsonToObject(FormMain form)
         {
             string json = await GetPoints(form.textBoxAdress.Text);
 
-            listDates = JsonConvert.DeserializeObject<List<JsonData>>(json);
+            listData = JsonConvert.DeserializeObject<List<JsonData>>(json);
+
+
+            int a = 1;
         }
 
         public Task<string> GetPoints(string adress)
@@ -37,7 +42,11 @@ namespace CoordApp.Controllers
 
             string filename = form.saveFileDialog.FileName;
 
-            System.IO.File.WriteAllText(filename, listDates[0].geojson.coordinates[0].ToString());
+            foreach (var data in listData[0].geojson.coordinates)
+            {
+                System.IO.File.WriteAllText(filename, data.ToString());
+            }
+            
             MessageBox.Show("Файл сохранен");
         }
     }
