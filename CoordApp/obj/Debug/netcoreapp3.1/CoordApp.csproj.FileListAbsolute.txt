@@ -1,0 +1,17 @@
+C:\Users\G580\source\repos\CoordApp\CoordApp\obj\Debug\netcoreapp3.1\CoordApp.csprojAssemblyReference.cache
+C:\Users\G580\source\repos\CoordApp\CoordApp\obj\Debug\netcoreapp3.1\CoordApp.FormMain.resources
+C:\Users\G580\source\repos\CoordApp\CoordApp\obj\Debug\netcoreapp3.1\CoordApp.csproj.GenerateResource.cache
+C:\Users\G580\source\repos\CoordApp\CoordApp\obj\Debug\netcoreapp3.1\CoordApp.AssemblyInfoInputs.cache
+C:\Users\G580\source\repos\CoordApp\CoordApp\obj\Debug\netcoreapp3.1\CoordApp.AssemblyInfo.cs
+C:\Users\G580\source\repos\CoordApp\CoordApp\obj\Debug\netcoreapp3.1\CoordApp.csproj.CoreCompileInputs.cache
+C:\Users\G580\source\repos\CoordApp\CoordApp\bin\Debug\netcoreapp3.1\CoordApp.exe
+C:\Users\G580\source\repos\CoordApp\CoordApp\bin\Debug\netcoreapp3.1\CoordApp.deps.json
+C:\Users\G580\source\repos\CoordApp\CoordApp\bin\Debug\netcoreapp3.1\CoordApp.runtimeconfig.json
+C:\Users\G580\source\repos\CoordApp\CoordApp\bin\Debug\netcoreapp3.1\CoordApp.runtimeconfig.dev.json
+C:\Users\G580\source\repos\CoordApp\CoordApp\bin\Debug\netcoreapp3.1\CoordApp.dll
+C:\Users\G580\source\repos\CoordApp\CoordApp\bin\Debug\netcoreapp3.1\CoordApp.pdb
+C:\Users\G580\source\repos\CoordApp\CoordApp\obj\Debug\netcoreapp3.1\CoordApp.dll
+C:\Users\G580\source\repos\CoordApp\CoordApp\obj\Debug\netcoreapp3.1\CoordApp.pdb
+C:\Users\G580\source\repos\CoordApp\CoordApp\obj\Debug\netcoreapp3.1\CoordApp.genruntimeconfig.cache
+C:\Users\G580\source\repos\CoordApp\CoordApp\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\G580\source\repos\CoordApp\CoordApp\obj\Debug\netcoreapp3.1\CoordApp.csproj.CopyComplete
