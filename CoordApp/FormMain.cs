@@ -20,13 +20,18 @@ namespace CoordApp
         }
         private void FormMain_Load(object sender, EventArgs e)
         {
+            saveFileDialog.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
             controller = new ControllerFormMain();
         }
 
         private void buttonLoadPoints_Click(object sender, EventArgs e)
         {
-            controller.Blabla(this);
+            controller.GetDataFromJson(this);
         }
 
+        private void buttonSave_Click(object sender, EventArgs e)
+        {
+            controller.SaveFile(this);
+        }
     }
 }

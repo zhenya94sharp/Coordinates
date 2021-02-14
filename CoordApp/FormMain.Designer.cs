@@ -34,14 +34,13 @@ namespace CoordApp
             this.textBoxAdress = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.textBoxFrequency = new System.Windows.Forms.TextBox();
-            this.textBoxFileName = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.buttonSave = new System.Windows.Forms.Button();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.SuspendLayout();
             // 
             // buttonLoadPoints
             // 
-            this.buttonLoadPoints.Location = new System.Drawing.Point(188, 160);
+            this.buttonLoadPoints.Location = new System.Drawing.Point(188, 146);
             this.buttonLoadPoints.Name = "buttonLoadPoints";
             this.buttonLoadPoints.Size = new System.Drawing.Size(137, 33);
             this.buttonLoadPoints.TabIndex = 0;
@@ -69,7 +68,7 @@ namespace CoordApp
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 94);
+            this.label2.Location = new System.Drawing.Point(49, 237);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(84, 15);
             this.label2.TabIndex = 5;
@@ -77,28 +76,11 @@ namespace CoordApp
             // 
             // textBoxFrequency
             // 
-            this.textBoxFrequency.Location = new System.Drawing.Point(16, 112);
+            this.textBoxFrequency.Location = new System.Drawing.Point(49, 255);
             this.textBoxFrequency.Multiline = true;
             this.textBoxFrequency.Name = "textBoxFrequency";
             this.textBoxFrequency.Size = new System.Drawing.Size(161, 23);
             this.textBoxFrequency.TabIndex = 6;
-            // 
-            // textBoxFileName
-            // 
-            this.textBoxFileName.Location = new System.Drawing.Point(32, 316);
-            this.textBoxFileName.Multiline = true;
-            this.textBoxFileName.Name = "textBoxFileName";
-            this.textBoxFileName.Size = new System.Drawing.Size(202, 23);
-            this.textBoxFileName.TabIndex = 7;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(32, 298);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(69, 15);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Имя файла";
             // 
             // buttonSave
             // 
@@ -108,6 +90,7 @@ namespace CoordApp
             this.buttonSave.TabIndex = 9;
             this.buttonSave.Text = "Сохранить файл";
             this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // FormMain
             // 
@@ -115,8 +98,6 @@ namespace CoordApp
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(500, 421);
             this.Controls.Add(this.buttonSave);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBoxFileName);
             this.Controls.Add(this.textBoxFrequency);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBoxAdress);
@@ -135,11 +116,10 @@ namespace CoordApp
         private System.Windows.Forms.Button buttonLoadPoints;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button buttonSave;
         public System.Windows.Forms.TextBox textBoxAdress;
         public System.Windows.Forms.TextBox textBoxFrequency;
-        public System.Windows.Forms.TextBox textBoxFileName;
+        public System.Windows.Forms.SaveFileDialog saveFileDialog;
     }
 }
 
