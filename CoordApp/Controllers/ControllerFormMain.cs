@@ -17,15 +17,24 @@ namespace CoordApp.Controllers
         private static List<JsonData> listData = new List<JsonData>();
         public async void ConvertJsonToObject(FormMain form)
         {
-            string json = await GetPoints(form.textBoxAdress.Text);
+            if (form.textBoxAdress.Text=="")
+            {
+                MessageBox.Show("Введите адрес!");
+                return;
+            }
+            string json = await GetJson(form.textBoxAdress.Text);
 
-            listData = JsonConvert.DeserializeObject<List<JsonData>>(json);
+            JArray array = JArray.Parse(json);
+
+            JObject jsonData = JObject.FromObject(array[0]);
 
 
-            int a = 1;
+            List<List<double>> coordinates = JsonConvert.DeserializeObject<List<List<double>>>(jsonData["geojson"]["coordinates"][0][0].ToString());
+
+
         }
 
-        public Task<string> GetPoints(string adress)
+        public Task<string> GetJson(string adress)
         {
             string url = $"https://nominatim.openstreetmap.org/search?q={adress}&format=json&polygon_geojson=1";
             WebClient webClient = new WebClient();

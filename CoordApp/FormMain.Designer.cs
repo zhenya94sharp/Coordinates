@@ -40,7 +40,7 @@ namespace CoordApp
             // 
             // buttonLoadPoints
             // 
-            this.buttonLoadPoints.Location = new System.Drawing.Point(188, 146);
+            this.buttonLoadPoints.Location = new System.Drawing.Point(188, 127);
             this.buttonLoadPoints.Name = "buttonLoadPoints";
             this.buttonLoadPoints.Size = new System.Drawing.Size(137, 33);
             this.buttonLoadPoints.TabIndex = 0;
@@ -68,7 +68,7 @@ namespace CoordApp
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(49, 237);
+            this.label2.Location = new System.Drawing.Point(16, 235);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(84, 15);
             this.label2.TabIndex = 5;
@@ -76,7 +76,7 @@ namespace CoordApp
             // 
             // textBoxFrequency
             // 
-            this.textBoxFrequency.Location = new System.Drawing.Point(49, 255);
+            this.textBoxFrequency.Location = new System.Drawing.Point(16, 253);
             this.textBoxFrequency.Multiline = true;
             this.textBoxFrequency.Name = "textBoxFrequency";
             this.textBoxFrequency.Size = new System.Drawing.Size(161, 23);
