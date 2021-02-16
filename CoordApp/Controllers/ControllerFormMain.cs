@@ -42,7 +42,7 @@ namespace CoordApp.Controllers
             MessageBox.Show("Получены точки полигона");
         }
 
-        public Task<string> GetJson(string adress)
+        private Task<string> GetJson(string adress)
         {
             string url = $"https://nominatim.openstreetmap.org/search?q={adress}&format=json&polygon_geojson=1";
             WebClient webClient = new WebClient();
@@ -60,11 +60,6 @@ namespace CoordApp.Controllers
                 return;
             }
 
-            if (form.saveFileDialog.ShowDialog() == DialogResult.Cancel)
-                return;
-
-            string filename = form.saveFileDialog.FileName;
-
             try
             {
                 if (form.textBoxFrequency.Text != "")
@@ -74,38 +69,43 @@ namespace CoordApp.Controllers
             }
             catch (Exception e)
             {
-                MessageBox.Show("Введите корректное значение\n"+e.Message);
+                MessageBox.Show("Введите корректное значение\n" + e.Message);
                 return;
             }
-            
-            List<string> points = new List<string>();
+
+            if (form.saveFileDialog.ShowDialog() == DialogResult.Cancel)
+                return;
+
+            string filename = form.saveFileDialog.FileName;
+
+            List<string> allPoints = new List<string>();
 
             List<string> sortList = new List<string>();
 
             foreach (var point in coordinates)
             {
-                points.Add(point[0].ToString());
-                points.Add(point[1].ToString());
+                allPoints.Add(point[0].ToString());
+                allPoints.Add(point[1].ToString());
             }
 
-            if (frequency!=0)
+            if (frequency>1)
             {
-                int length = points.Count;
+                int length = allPoints.Count;
 
-                if (points.Count%frequency!=0)
+                if (allPoints.Count%frequency!=0)
                 {
-                    length = points.Count - (points.Count % frequency);
+                    length = allPoints.Count - (allPoints.Count % frequency);
                 }
                 for (int i = 0; i < length; i += frequency)
                 {
-                    sortList.Add(points[i]);
-                    sortList.Add(points[i + 1]);
+                    sortList.Add(allPoints[i]);
+                    sortList.Add(allPoints[i + 1]);
                 }
                 System.IO.File.WriteAllLines(filename, sortList);
                 MessageBox.Show("Файл сохранен");
                 return;
             }
-            System.IO.File.WriteAllLines(filename, points);
+            System.IO.File.WriteAllLines(filename, allPoints);
 
             MessageBox.Show("Файл сохранен");
         }
