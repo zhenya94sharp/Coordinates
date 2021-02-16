@@ -13,7 +13,8 @@ namespace CoordApp.Controllers
 {
     class ControllerFormMain
     {
-        private static List<List<double>> coordinates = new List<List<double>>();
+        private List<List<double>> coordinates;
+        private int frequency;
         public async void ConvertJsonToObject(FormMain form)
         {
             if (form.textBoxAdress.Text=="")
@@ -53,12 +54,33 @@ namespace CoordApp.Controllers
 
         public void SaveFile(FormMain form)
         {
+            if (coordinates==null)
+            {
+                MessageBox.Show("Вначале загрузите точки!");
+                return;
+            }
+
             if (form.saveFileDialog.ShowDialog() == DialogResult.Cancel)
                 return;
 
             string filename = form.saveFileDialog.FileName;
 
+            try
+            {
+                if (form.textBoxFrequency.Text != "")
+                {
+                    frequency = int.Parse(form.textBoxFrequency.Text);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Введите корректное значение\n"+e.Message);
+                return;
+            }
+            
             List<string> points = new List<string>();
+
+            List<string> sortList = new List<string>();
 
             foreach (var point in coordinates)
             {
@@ -66,6 +88,23 @@ namespace CoordApp.Controllers
                 points.Add(point[1].ToString());
             }
 
+            if (frequency!=0)
+            {
+                int length = points.Count;
+
+                if (points.Count%frequency!=0)
+                {
+                    length = points.Count - (points.Count % frequency);
+                }
+                for (int i = 0; i < length; i += frequency)
+                {
+                    sortList.Add(points[i]);
+                    sortList.Add(points[i + 1]);
+                }
+                System.IO.File.WriteAllLines(filename, sortList);
+                MessageBox.Show("Файл сохранен");
+                return;
+            }
             System.IO.File.WriteAllLines(filename, points);
 
             MessageBox.Show("Файл сохранен");
