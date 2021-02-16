@@ -6,7 +6,6 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CoordApp.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -14,7 +13,7 @@ namespace CoordApp.Controllers
 {
     class ControllerFormMain
     {
-        private static List<JsonData> listData = new List<JsonData>();
+        private static List<List<double>> coordinates = new List<List<double>>();
         public async void ConvertJsonToObject(FormMain form)
         {
             if (form.textBoxAdress.Text=="")
@@ -28,10 +27,18 @@ namespace CoordApp.Controllers
 
             JObject jsonData = JObject.FromObject(array[0]);
 
+            int lastIndex = jsonData["geojson"]["coordinates"].Count() - 1;
 
-            List<List<double>> coordinates = JsonConvert.DeserializeObject<List<List<double>>>(jsonData["geojson"]["coordinates"][0][0].ToString());
+            if (jsonData["geojson"]["type"].ToString() == "Polygon")
+            {
+                coordinates = JsonConvert.DeserializeObject<List<List<double>>>(jsonData["geojson"]["coordinates"][lastIndex].ToString());
+            }
+            else
+            {
+                coordinates = JsonConvert.DeserializeObject<List<List<double>>>(jsonData["geojson"]["coordinates"][lastIndex][0].ToString());
+            }
 
-
+            MessageBox.Show("Получены точки полигона");
         }
 
         public Task<string> GetJson(string adress)
@@ -51,11 +58,16 @@ namespace CoordApp.Controllers
 
             string filename = form.saveFileDialog.FileName;
 
-            foreach (var data in listData[0].geojson.coordinates)
+            List<string> points = new List<string>();
+
+            foreach (var point in coordinates)
             {
-                System.IO.File.WriteAllText(filename, data.ToString());
+                points.Add(point[0].ToString());
+                points.Add(point[1].ToString());
             }
-            
+
+            System.IO.File.WriteAllLines(filename, points);
+
             MessageBox.Show("Файл сохранен");
         }
     }
