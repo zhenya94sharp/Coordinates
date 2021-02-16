@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -42,14 +43,23 @@ namespace CoordApp.Controllers
             MessageBox.Show("Получены точки полигона");
         }
 
-        private Task<string> GetJson(string adress)
+        private async Task<string> GetJson(string adress)
         {
-            string url = $"https://nominatim.openstreetmap.org/search?q={adress}&format=json&polygon_geojson=1";
-            WebClient webClient = new WebClient();
-            webClient.Encoding = Encoding.UTF8;
-            webClient.Headers.Add("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
+            try
+            {
+                string url = $"https://nominatim.openstreetmap.org/search?q={adress}&format=json&polygon_geojson=1";
+                WebClient webClient = new WebClient();
+                webClient.Encoding = Encoding.UTF8;
+                webClient.Headers.Add("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
 
-            return Task<string>.Factory.StartNew(() => webClient.DownloadString(url));
+                return await Task<string>.Factory.StartNew(() => webClient.DownloadString(url));
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show("Ошибка! Проверьте соединение\n"+e.Message);
+                return null;
+            }
+            
         }
 
         public void SaveFile(FormMain form)

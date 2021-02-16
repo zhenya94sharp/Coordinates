@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "nhYeQRrJjfW2Jnka+OzfW4JGrpMnUBReorg/MnxAeft8ha7CbC+ZffPew+VTeGvm84fklV6+30tf7JQxEVgJdw==",
+  "dgSpecHash": "IT9YpLdv77ANBrspg7m7nmQBKmLjlNgpRsilXchtAQ5o9Tt283mj/9G+u88iEj4ekh7a2KiSEPkwVhkZRaOxkw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\G580\\source\\repos\\CoordApp\\CoordApp\\CoordApp.csproj",
+  "projectFilePath": "C:\\Users\\G580\\Documents\\GitHub\\Coordinates\\CoordApp\\CoordApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\G580\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
   ],

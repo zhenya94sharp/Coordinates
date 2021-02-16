@@ -57,11 +57,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\G580\\source\\repos\\CoordApp\\CoordApp\\CoordApp.csproj",
+      "projectUniqueName": "C:\\Users\\G580\\Documents\\GitHub\\Coordinates\\CoordApp\\CoordApp.csproj",
       "projectName": "CoordApp",
-      "projectPath": "C:\\Users\\G580\\source\\repos\\CoordApp\\CoordApp\\CoordApp.csproj",
+      "projectPath": "C:\\Users\\G580\\Documents\\GitHub\\Coordinates\\CoordApp\\CoordApp.csproj",
       "packagesPath": "C:\\Users\\G580\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\G580\\source\\repos\\CoordApp\\CoordApp\\obj\\",
+      "outputPath": "C:\\Users\\G580\\Documents\\GitHub\\Coordinates\\CoordApp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\G580\\AppData\\Roaming\\NuGet\\NuGet.Config",
