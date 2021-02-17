@@ -16,7 +16,7 @@ namespace CoordApp.Controllers
     {
         private List<List<double>> coordinates;
         private int frequency;
-        public async void ConvertJsonToObject(FormMain form)
+        public async void ConvertJsonToList(FormMain form)
         {
             if (form.textBoxAdress.Text == "")
             {
@@ -35,7 +35,6 @@ namespace CoordApp.Controllers
                 MessageBox.Show(e.Message);
                 return;
             }
-
 
             JArray array = JArray.Parse(json);
 
@@ -86,9 +85,9 @@ namespace CoordApp.Controllers
 
             try
             {
-                if (form.textBoxFrequency.Text != "")
+                if (form.maskedTextBoxFrequency.Text != "")
                 {
-                    frequency = int.Parse(form.textBoxFrequency.Text);
+                    frequency = int.Parse(form.maskedTextBoxFrequency.Text);
                 }
             }
             catch (Exception e)
@@ -102,9 +101,46 @@ namespace CoordApp.Controllers
 
             string filename = form.saveFileDialog.FileName;
 
-            List<string> allPoints = new List<string>();
+            List<string> allPoints = ConvertCoordinatesToListString();
 
+            if (frequency > 1)
+            {
+                List<string> sortList = SortListAllPoints(allPoints);
+
+                System.IO.File.WriteAllLines(filename, sortList);
+
+                MessageBox.Show("Файл сохранен");
+                return;
+            }
+
+            System.IO.File.WriteAllLines(filename, allPoints);
+
+            MessageBox.Show("Файл сохранен");
+        }
+
+        private List<string> SortListAllPoints(List<string>allPoints)
+        {
             List<string> sortList = new List<string>();
+
+            int length = allPoints.Count;
+
+            if (allPoints.Count % frequency != 0)
+            {
+                length = allPoints.Count - (allPoints.Count % frequency);
+            }
+            for (int i = 0; i < length; i += frequency)
+            {
+                sortList.Add(allPoints[i]);
+                sortList.Add(allPoints[i + 1]);
+            }
+
+            return sortList;
+        }
+
+
+        private List<string> ConvertCoordinatesToListString()
+        {
+            List<string> allPoints = new List<string>();
 
             foreach (var point in coordinates)
             {
@@ -112,26 +148,7 @@ namespace CoordApp.Controllers
                 allPoints.Add(point[1].ToString());
             }
 
-            if (frequency > 1)
-            {
-                int length = allPoints.Count;
-
-                if (allPoints.Count % frequency != 0)
-                {
-                    length = allPoints.Count - (allPoints.Count % frequency);
-                }
-                for (int i = 0; i < length; i += frequency)
-                {
-                    sortList.Add(allPoints[i]);
-                    sortList.Add(allPoints[i + 1]);
-                }
-                System.IO.File.WriteAllLines(filename, sortList);
-                MessageBox.Show("Файл сохранен");
-                return;
-            }
-            System.IO.File.WriteAllLines(filename, allPoints);
-
-            MessageBox.Show("Файл сохранен");
+            return allPoints;
         }
     }
 }

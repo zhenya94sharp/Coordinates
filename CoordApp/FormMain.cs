@@ -26,7 +26,7 @@ namespace CoordApp
 
         private void buttonLoadPoints_Click(object sender, EventArgs e)
         {
-            controller.ConvertJsonToObject(this);
+            controller.ConvertJsonToList(this);
         }
 
         private void buttonSave_Click(object sender, EventArgs e)

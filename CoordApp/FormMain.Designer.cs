@@ -33,14 +33,14 @@ namespace CoordApp
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxAdress = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBoxFrequency = new System.Windows.Forms.TextBox();
             this.buttonSave = new System.Windows.Forms.Button();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.maskedTextBoxFrequency = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // buttonLoadPoints
             // 
-            this.buttonLoadPoints.Location = new System.Drawing.Point(188, 127);
+            this.buttonLoadPoints.Location = new System.Drawing.Point(188, 133);
             this.buttonLoadPoints.Name = "buttonLoadPoints";
             this.buttonLoadPoints.Size = new System.Drawing.Size(137, 33);
             this.buttonLoadPoints.TabIndex = 0;
@@ -53,9 +53,9 @@ namespace CoordApp
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(16, 36);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 15);
+            this.label1.Size = new System.Drawing.Size(84, 15);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Адрес";
+            this.label1.Text = "Введите адрес";
             // 
             // textBoxAdress
             // 
@@ -68,23 +68,15 @@ namespace CoordApp
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 235);
+            this.label2.Location = new System.Drawing.Point(16, 311);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(84, 15);
+            this.label2.Size = new System.Drawing.Size(132, 15);
             this.label2.TabIndex = 5;
-            this.label2.Text = "Частота точек";
-            // 
-            // textBoxFrequency
-            // 
-            this.textBoxFrequency.Location = new System.Drawing.Point(16, 253);
-            this.textBoxFrequency.Multiline = true;
-            this.textBoxFrequency.Name = "textBoxFrequency";
-            this.textBoxFrequency.Size = new System.Drawing.Size(161, 23);
-            this.textBoxFrequency.TabIndex = 6;
+            this.label2.Text = "Укажите частоту точек";
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(188, 367);
+            this.buttonSave.Location = new System.Drawing.Point(188, 376);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(137, 33);
             this.buttonSave.TabIndex = 9;
@@ -92,13 +84,22 @@ namespace CoordApp
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
+            // maskedTextBoxFrequency
+            // 
+            this.maskedTextBoxFrequency.Location = new System.Drawing.Point(16, 340);
+            this.maskedTextBoxFrequency.Mask = "000";
+            this.maskedTextBoxFrequency.Name = "maskedTextBoxFrequency";
+            this.maskedTextBoxFrequency.Size = new System.Drawing.Size(100, 23);
+            this.maskedTextBoxFrequency.TabIndex = 10;
+            this.maskedTextBoxFrequency.ValidatingType = typeof(int);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(500, 421);
+            this.Controls.Add(this.maskedTextBoxFrequency);
             this.Controls.Add(this.buttonSave);
-            this.Controls.Add(this.textBoxFrequency);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBoxAdress);
             this.Controls.Add(this.label1);
@@ -118,8 +119,8 @@ namespace CoordApp
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button buttonSave;
         public System.Windows.Forms.TextBox textBoxAdress;
-        public System.Windows.Forms.TextBox textBoxFrequency;
         public System.Windows.Forms.SaveFileDialog saveFileDialog;
+        public System.Windows.Forms.MaskedTextBox maskedTextBoxFrequency;
     }
 }
 
