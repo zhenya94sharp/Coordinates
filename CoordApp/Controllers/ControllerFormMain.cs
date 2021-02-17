@@ -18,12 +18,24 @@ namespace CoordApp.Controllers
         private int frequency;
         public async void ConvertJsonToObject(FormMain form)
         {
-            if (form.textBoxAdress.Text=="")
+            if (form.textBoxAdress.Text == "")
             {
                 MessageBox.Show("Введите адрес!");
                 return;
             }
-            string json = await GetJson(form.textBoxAdress.Text);
+
+            string json;
+
+            try
+            {
+                json = await GetJson(form.textBoxAdress.Text);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+                return;
+            }
+
 
             JArray array = JArray.Parse(json);
 
@@ -43,28 +55,30 @@ namespace CoordApp.Controllers
             MessageBox.Show("Получены точки полигона");
         }
 
-        private Task<string> GetJson(string adress)
+        private async Task<string> GetJson(string adress)
         {
             try
             {
                 string url = $"https://nominatim.openstreetmap.org/search?q={adress}&format=json&polygon_geojson=1";
-                WebClient webClient = new WebClient();
-                webClient.Encoding = Encoding.UTF8;
-                webClient.Headers.Add("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
 
-                return Task<string>.Factory.StartNew(() => webClient.DownloadString(url));
+                HttpClient client = new HttpClient();
+
+                client.DefaultRequestHeaders.Add("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
+
+                string json = await client.GetStringAsync(url);
+
+                return json;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                MessageBox.Show("Ошибка! Проверьте соединение\n"+e.Message);
-                return null;
+                throw new Exception("Ошибка! Проверьте соединение\n" + e.Message);
             }
-            
+
         }
 
         public void SaveFile(FormMain form)
         {
-            if (coordinates==null)
+            if (coordinates == null)
             {
                 MessageBox.Show("Вначале загрузите точки!");
                 return;
@@ -98,11 +112,11 @@ namespace CoordApp.Controllers
                 allPoints.Add(point[1].ToString());
             }
 
-            if (frequency>1)
+            if (frequency > 1)
             {
                 int length = allPoints.Count;
 
-                if (allPoints.Count%frequency!=0)
+                if (allPoints.Count % frequency != 0)
                 {
                     length = allPoints.Count - (allPoints.Count % frequency);
                 }
